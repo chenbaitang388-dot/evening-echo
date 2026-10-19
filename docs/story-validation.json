@@ -1,0 +1,17 @@
+{
+  "nodes": 197,
+  "endings": 34,
+  "firstPlayEndings": 33,
+  "reachableTerminalStates": 76914,
+  "textCharacters": 71512,
+  "checks": [
+    "all jumps valid",
+    "all nodes reachable",
+    "all endings reachable",
+    "no cycles",
+    "route locking",
+    "hidden unlock",
+    "state save/load roundtrip",
+    "corrupt state rejection"
+  ]
+}

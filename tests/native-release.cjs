@@ -1,0 +1,24 @@
+const fs=require('fs'),path=require('path'),assert=require('assert');
+const {chromium}=require('playwright');
+const root=path.resolve(__dirname,'..');
+(async()=>{
+ const browser=await chromium.connectOverCDP('http://127.0.0.1:9333');
+ const page=browser.contexts()[0].pages().find(p=>p.url().startsWith('https://evening-echo.local'));
+ assert(page,'Native local page missing');const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.evaluate(()=>{localStorage.clear();localStorage.setItem('evening-echo-v2-settings',JSON.stringify({speed:0,bgm:0,sfx:0}));});await page.reload();
+ const button=name=>page.getByRole('button',{name,exact:true});
+ await button('开始故事').click();await page.locator('#dialogue').click();
+ const expected=await page.evaluate(()=>EveningEcho.snapshot());
+ await button('存档').click();const downloading=page.waitForEvent('download');await button('导出当前存档').click();
+ const file=path.join(root,'work','native-export-'+Date.now()+'.json');
+ const download=await downloading;assert.equal(await download.failure(),null);await download.saveAs(file);
+ const data=JSON.parse(fs.readFileSync(file,'utf8'));assert.deepEqual(data.state,expected);
+ await button('关闭 ×').click();await page.locator('#dialogue').click();await button('读档').click();
+ await page.locator('input[type=file]').setInputFiles(file);await page.waitForFunction(()=>!document.querySelector('#modal').open);
+ assert.deepEqual(await page.evaluate(()=>EveningEcho.snapshot()),expected);assert.deepEqual(errors,[]);
+ await page.screenshot({path:path.join(root,'docs','native-release.png')});
+ const report={status:'passed',origin:page.url(),nativeExport:true,nativeImport:true,consoleErrors:errors,state:{node:expected.node,line:expected.line}};
+ fs.writeFileSync(path.join(root,'docs','native-release-validation.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+ const closed=page.waitForEvent('close',{timeout:10000});await page.evaluate(()=>window.chrome.webview.postMessage('quit'));await closed;
+ process.exit(0);
+})().catch(e=>{console.error(e);process.exit(1)});

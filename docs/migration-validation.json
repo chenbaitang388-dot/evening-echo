@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "migrationCases": 1995,
+  "sourceRevisions": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "currentRevision": 17,
+  "boundaryPositionsRejected": true,
+  "currentSavePositionPreserved": true,
+  "backgroundReferencesValid": true
+}

@@ -1,0 +1,61 @@
+{
+  "method": "First-play reachable path bounds, displayed text and selected choice text; UTF-16 characters including punctuation. Estimates exclude pauses, choices and animation. Not measured playtime.",
+  "routes": {
+    "tang": {
+      "min": 12377,
+      "max": 13712,
+      "minutesAt300CharactersPerMinute": {
+        "min": 41.3,
+        "max": 45.7
+      }
+    },
+    "gu": {
+      "min": 12112,
+      "max": 13302,
+      "minutesAt300CharactersPerMinute": {
+        "min": 40.4,
+        "max": 44.3
+      }
+    },
+    "lin": {
+      "min": 12273,
+      "max": 13902,
+      "minutesAt300CharactersPerMinute": {
+        "min": 40.9,
+        "max": 46.3
+      }
+    },
+    "xu": {
+      "min": 12260,
+      "max": 13652,
+      "minutesAt300CharactersPerMinute": {
+        "min": 40.9,
+        "max": 45.5
+      }
+    },
+    "zhou": {
+      "min": 12405,
+      "max": 13439,
+      "minutesAt300CharactersPerMinute": {
+        "min": 41.4,
+        "max": 44.8
+      }
+    },
+    "shen": {
+      "min": 12068,
+      "max": 13288,
+      "minutesAt300CharactersPerMinute": {
+        "min": 40.2,
+        "max": 44.3
+      }
+    },
+    "ensemble": {
+      "min": 5937,
+      "max": 6251,
+      "minutesAt300CharactersPerMinute": {
+        "min": 19.8,
+        "max": 20.8
+      }
+    }
+  }
+}

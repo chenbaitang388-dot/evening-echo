@@ -1,0 +1,13 @@
+PlayerData*/
+Test*Data*/
+backups/
+work/
+node_modules/
+.env*
+*.log
+*.zip
+*.exe
+*.dll
+*.pdb
+*.lnk
+安装信息.json
